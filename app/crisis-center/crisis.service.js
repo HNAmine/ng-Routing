@@ -11,48 +11,44 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var Hero, HeroService, HEROES, heroesPromise;
+    var Crisis, CrisisService, crises, crisesPromise;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            Hero = (function () {
-                function Hero(id, name) {
+            Crisis = (function () {
+                function Crisis(id, name) {
                     this.id = id;
                     this.name = name;
                 }
-                return Hero;
+                return Crisis;
             }());
-            exports_1("Hero", Hero);
-            HeroService = (function () {
-                function HeroService() {
+            exports_1("Crisis", Crisis);
+            CrisisService = (function () {
+                function CrisisService() {
                 }
-                HeroService.prototype.getHeroes = function () {
-                    return heroesPromise;
+                CrisisService.prototype.getCrises = function () { return crisesPromise; };
+                CrisisService.prototype.getCrisis = function (id) {
+                    return crisesPromise
+                        .then(function (crises) { return crises.filter(function (c) { return c.id === +id; })[0]; });
                 };
-                HeroService.prototype.getHero = function (id) {
-                    return heroesPromise
-                        .then(function (heroes) { return heroes.filter(function (h) { return h.id === +id; })[0]; });
-                };
-                HeroService = __decorate([
+                CrisisService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
-                ], HeroService);
-                return HeroService;
+                ], CrisisService);
+                return CrisisService;
             }());
-            exports_1("HeroService", HeroService);
-            HEROES = [
-                new Hero(11, 'Mr. Mohamed HANANE'),
-                new Hero(12, 'Mme. Mina KERADI'),
-                new Hero(13, 'Mr. Amine HANANE'),
-                new Hero(14, 'Mr. Ayoub HANANE'),
-                new Hero(15, 'Mlle. Nadia HANANE'),
-                new Hero(16, 'Mr. Solayman HANANE')
+            exports_1("CrisisService", CrisisService);
+            crises = [
+                new Crisis(1, 'Dragon Burning Cities'),
+                new Crisis(2, 'Sky Rains Great White Sharks'),
+                new Crisis(3, 'Giant Asteroid Heading For Earth'),
+                new Crisis(4, 'Procrastinators Meeting Delayed Again'),
             ];
-            heroesPromise = Promise.resolve(HEROES);
+            crisesPromise = Promise.resolve(crises);
         }
     }
 });
-//# sourceMappingURL=hero.service.js.map
+//# sourceMappingURL=crisis.service.js.map
